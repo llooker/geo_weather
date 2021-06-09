@@ -4,10 +4,11 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
-explore: zip_codes {
+explore: weather_by_zip {
+  from: zip_codes
   join: zip_station_date_map {
     relationship: one_to_many
-    sql_on: ${zip_codes.zip_code} = ${zip_station_date_map.zip_code} ;;
+    sql_on: ${weather_by_zip.zip_code} = ${zip_station_date_map.zip_code} ;;
   }
 
   join: stations_to_include {
@@ -26,4 +27,18 @@ explore: zip_codes {
 explore: lightning_2020 {}
 
 
-explore: datafiniti_fast_food {}
+#explore: datafiniti_fast_food {}
+
+explore: nyc_311 {}
+
+explore: state_zip_crossings {
+  join: zip_codes {
+    relationship: many_to_one
+    sql_on: ${state_zip_crossings.zip_code}=${zip_codes.zip_code} ;;
+  }
+
+  join: states {
+    relationship: many_to_one
+    sql_on: ${states.state_fips_code} = ${state_zip_crossings.state} ;;
+  }
+}
