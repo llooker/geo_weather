@@ -31,7 +31,7 @@ view: state_zip_crossings {
 
   dimension: zip_county_geom {
     type: string
-    sql: ST_ASTEXT(${TABLE}.zip_county_geom) ;;
+    sql: ST_ASGEOJSON(${TABLE}.zip_county_geom) ;;
   }
 
 
