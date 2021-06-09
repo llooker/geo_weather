@@ -24,3 +24,6 @@ explore: zip_codes {
 }
 
 explore: lightning_2020 {}
+
+
+explore: datafiniti_fast_food {}
