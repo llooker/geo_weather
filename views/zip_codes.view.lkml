@@ -83,7 +83,7 @@ view: zip_codes {
 
   dimension: zip_code_geom {
     type: string
-    sql: ST_ASTEXT(${TABLE}.zip_code_geom) ;;
+    sql: ST_ASTEXT(ST_SIMPLIFY(zip_code_geom, 100)) ;;
   }
 
   measure: count {
